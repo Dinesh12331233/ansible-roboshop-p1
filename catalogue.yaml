@@ -1,0 +1,15 @@
+- name: configuring catalogue application 
+  hosts: catalogue 
+  become: yes 
+  tasks: 
+  - name: disabling nodejs 
+    ansible.builtin.command: dnf module disable nodejs -y
+  
+  - name: enabling nodejs required version 
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+  
+  - name: install package 
+    ansible.builtin.package: 
+      name: nodejs 
+      state: present 
+      
