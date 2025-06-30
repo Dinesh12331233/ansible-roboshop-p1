@@ -23,4 +23,10 @@
   - name: creating a directory 
     ansible.builtin.file: 
       path: /app 
-      state: directory      
+      state: directory     
+
+  - name: download the application code 
+    ansible.builtin.get_url: 
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+      path: /tmp/catalogue.zip 
+
