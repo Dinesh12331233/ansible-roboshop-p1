@@ -2,9 +2,15 @@
   hosts: mongodb 
   become: yes 
   tasks: 
+  # Master node lo file create chesanu. remote machine(mongodb server) loki file ni copy chesanu. 
   - name: copy mongo repo to remote server 
     ansible.builtin.copy: 
       src: mongo.repo 
       dest: /etc/yum.repos.d/mongo.repo 
-      
+
+  - name: install mongodb package 
+    ansible.builtin.package:
+      name: mongodb-org
+      state: present 
+          
       
