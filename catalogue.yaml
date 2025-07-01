@@ -55,7 +55,11 @@
       name: catalogue 
       state: started 
       enabled: yes 
-                
+
+  - name: copy mongo.repo file to remote machine 
+    ansible.builtin.copy: 
+      src: mongo.repo 
+      dest: /etc/yum.repos.d/mongo.repo              
 
 
   
