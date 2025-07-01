@@ -40,7 +40,11 @@
   - name: downloading libraries 
     community.general.npm: 
       path: /app 
-        
+
+  - name: copying catalogue.service to remote host 
+    ansible.builtin.copy:
+      src: catalogue.service 
+      dest: /etc/systemd/system/catalogue.service       
 
 
   
