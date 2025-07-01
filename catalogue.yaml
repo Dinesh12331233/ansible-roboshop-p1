@@ -59,7 +59,12 @@
   - name: copy mongo.repo file to remote machine 
     ansible.builtin.copy: 
       src: mongo.repo 
-      dest: /etc/yum.repos.d/mongo.repo              
+      dest: /etc/yum.repos.d/mongo.repo 
+
+  - name: installing mongodb client 
+    ansible.builtin.package: 
+      name: mongodb-mongosh 
+      state: present                  
 
 
   
