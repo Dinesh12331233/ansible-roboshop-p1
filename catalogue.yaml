@@ -44,7 +44,11 @@
   - name: copying catalogue.service to remote host 
     ansible.builtin.copy:
       src: catalogue.service 
-      dest: /etc/systemd/system/catalogue.service       
+      dest: /etc/systemd/system/catalogue.service 
+
+  - name: daemon-reloading the service 
+    ansible.builtin.systemd_service:
+      daemon_reload: true           
 
 
   
