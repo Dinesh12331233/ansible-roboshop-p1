@@ -64,7 +64,10 @@
   - name: installing mongodb client 
     ansible.builtin.package: 
       name: mongodb-mongosh 
-      state: present                  
+      state: present 
+
+  - name: load data 
+    ansible.builtin.command: mongosh --host mongodb.deepthi.tech </app/db/master-data.js                     
 
 
   
