@@ -1,33 +1,8 @@
-- name: configuring mongodb server 
+- name: setting up mongodb 
   hosts: mongodb 
   become: yes 
   tasks: 
-  # Master node lo file create chesanu. remote machine(mongodb server) loki file ni copy chesanu. 
-  - name: copy mongo repo to remote server 
+  - name: copying file to a remote server 
     ansible.builtin.copy: 
       src: mongo.repo 
       dest: /etc/yum.repos.d/mongo.repo 
-
-  - name: install mongodb package 
-    ansible.builtin.package:
-      name: mongodb-org
-      state: present 
-
-  - name: start and enable mongodb service 
-    ansible.builtin.service: 
-      name: mongod 
-      state: started 
-      enabled: yes 
-
-  - name: replace text in remote conf file   
-    ansible.builtin.replace: 
-      path: /etc/mongod.conf 
-      regexp: '127.0.0.1' 
-      replace: '0.0.0.0' 
-
-  - name: restart the service 
-    ansible.builtin.service: 
-      name: mongod 
-      state: restarted 
-                    
-      
