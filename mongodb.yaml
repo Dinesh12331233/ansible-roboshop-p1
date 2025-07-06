@@ -19,7 +19,12 @@
       enabled: yes 
 
   - name: Replace String in a File
-    ansible.builtin.package:
+    ansible.builtin.replace:
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
-      replace: '0.0.0.0'         
+      replace: '0.0.0.0'  
+
+  - name: Restart service 
+    ansible.builtin.service:
+      name: mongod 
+      state: restarted           
