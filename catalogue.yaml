@@ -23,3 +23,10 @@
       name: nodejs
       state: present 
 
+  - name: creating system user 
+    ansible.builtin.user: 
+      name: roboshop 
+      home: /app 
+      system: true 
+      shell: /sbin/nologin     
+
