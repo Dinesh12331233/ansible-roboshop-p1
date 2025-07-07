@@ -36,6 +36,11 @@
       dest: /app 
       remote_src: yes 
 
-  - name: Install packages based on package.json.
+  - name: Install libraries or dependencies  based on package.json.
     community.general.npm:
-      path: /app               
+      path: /app  
+
+  - name: copy user.service to remote server 
+    ansible.builtin.copy:
+      src: user.service 
+      dest: /etc/systemd/system/user.service              
