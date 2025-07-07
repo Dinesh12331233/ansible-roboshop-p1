@@ -8,4 +8,12 @@
 
   - name: print output 
     ansible.builtin.debug: 
-      msg: "{{ disable_output }}"   
+      msg: "{{ disable_output }}" 
+
+  - name: enabling required version of nodejs 
+    ansible.builtin.command: "dnf module enable nodejs:20 -y" 
+    register: enable_ouput 
+
+  - name: print ouput 
+    ansible.builtin.debug:
+      msg: "{{ enable_output }}"        
