@@ -9,4 +9,49 @@
     loop:
     - python3 
     - gcc 
-    - python3-devel  
+    - python3-devel 
+
+  - name: create system user 
+    ansible.builtin.user: 
+      name: roboshop 
+      system: true 
+      shell: /sbin/nologin 
+      home: /app   
+
+  - name: creating app directory 
+    ansible.builtin.file: 
+      path: /app 
+      state: directory 
+
+  - name: download application code 
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip 
+      dest: /tmp/payment.zip 
+
+  - name: unzipping application code 
+    ansible.builtin.unarchive: 
+      src: /tmp/payment.zip
+      dest: /app 
+      remote_src: yes   
+
+  - name: install dependencies 
+    args: 
+      chdir: /app 
+    ansible.builtin.command: pip3 install -r requirements.txt 
+
+  - name: copying payment.service file to remote server 
+    ansible.builtin.copy:
+      src: payment.service 
+      dest: /etc/systemd/system/payment.service 
+
+  - name: daemon_reload 
+    ansible.builtin.systemd_service:
+      daemon_reload: true 
+
+  - name: start and enable payment service 
+    ansible.builtin.service:
+      name: payment 
+      state: started 
+      enabled: yes 
+   
+                           
