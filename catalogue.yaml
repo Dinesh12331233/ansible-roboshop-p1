@@ -1,0 +1,6 @@
+- name: setting up catalogue component 
+  hosts: catalogue 
+  become: yes 
+  tasks: 
+  - name: disabling current version of nodejs 
+    ansible.builtin.command: "dnfff module disable nodejs -y" 
