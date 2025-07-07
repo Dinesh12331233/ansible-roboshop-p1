@@ -12,3 +12,10 @@
     ansible.builtin.package:
       name: nodejs 
       state: present 
+
+  - name: create a system user 
+    ansible.builtin.user: 
+      name: roboshop 
+      system: true 
+      home: /app 
+      shell: /sbin/nologin     
