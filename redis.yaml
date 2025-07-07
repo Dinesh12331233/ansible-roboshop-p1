@@ -21,4 +21,10 @@
   - name: install redis  
     ansible.builtin.package: 
       name: redis 
-      state: present    
+      state: present 
+
+  - name: Replace text in a File
+    ansible.builtin.replace: 
+      path: /etc/redis/redis.conf 
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'       
