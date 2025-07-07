@@ -3,9 +3,9 @@
   hosts: payment
   tasks:
   - name: install python3 packages
-    ansible.builtin.dnf:
+    ansible.builtin.package:
       name: "{{ item }}"
-      state: installed
+      state: present 
     loop:
     - python3 
     - gcc 
