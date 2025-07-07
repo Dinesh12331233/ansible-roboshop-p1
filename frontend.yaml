@@ -1,0 +1,15 @@
+- name: configuring frontend component 
+  hosts: frontend 
+  become: yes 
+  tasks: 
+  - name: disable default nginx version 
+    ansible.builtin.command: dnf module disable nginx -y 
+
+  - name: enable required nginx version 
+    ansible.builtin.command: dnf module enable nginx:1.24 -y 
+
+  - name: install nginx 
+    ansible.builtin.package: 
+      name: nginx 
+      state: present   
+         
