@@ -17,3 +17,9 @@
   - name: print ouput 
     ansible.builtin.debug:
       msg: "{{ enable_output }}" 
+
+  - name: Install nodejs package 
+    ansible.builtin.package:
+      name: nodejs
+      state: present 
+
