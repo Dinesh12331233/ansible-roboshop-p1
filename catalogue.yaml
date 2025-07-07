@@ -64,6 +64,11 @@
       name: catalogue 
       state: started 
       enabled: yes 
-      
+
+  - name: copy mongo.repo file 
+    ansible.builtin.copy: 
+      src: mongo.repo  
+      dest: /etc/yum.repos.d/mongo.repo 
+
 
 
